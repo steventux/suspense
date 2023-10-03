@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 
 import { ITableProps, kaReducer, Table } from 'ka-table';
 import { ICellEditorProps, IHeadCellProps } from 'ka-table/props';
-import { hideNewRow, saveNewRow, showNewRow } from 'ka-table/actionCreators';
+import { deleteRow, hideNewRow, saveNewRow, showNewRow } from 'ka-table/actionCreators';
 import { DataType, EditingMode, SortingMode } from 'ka-table/enums';
 import { DispatchFunc } from 'ka-table/types';
 
@@ -37,7 +37,7 @@ const columns = [
   { key: 'shockHsc', title: 'Shock HSC', dataType: DataType.String },
   { key: 'shockLsr', title: 'Shock LSR', dataType: DataType.String },
   { key: 'shockHsr', title: 'Shock HSR', dataType: DataType.String },
-  { key: 'addColumn', style: {width: 53}},
+  { key: 'actions', style: {width: 80}},
 ];
 
 const SuspenseTable: React.FC = () => {
@@ -63,6 +63,33 @@ const SuspenseTable: React.FC = () => {
    );
   };
 
+  const DeleteRow: React.FC<ICellTextProps> = ({
+    dispatch, rowKeyValue,
+  }) => {
+    return (
+      <img
+        src='static/icons/delete.svg'
+        className='delete-row-column-button'
+        onClick={() => dispatch(deleteRow(rowKeyValue))}
+        alt=''
+      />
+    );
+  };
+
+  const RemoveButton: React.FC<ICellEditorProps> = ({
+    dispatch
+  }) => {
+    return (
+      <img
+        src='static/icons/close.svg'
+        className='close-cell-button'
+        alt='Cancel'
+        title='Cancel'
+        onClick={() => dispatch(hideNewRow())}
+      />
+    );
+  };
+
   const SaveButton: React.FC<ICellEditorProps> = ({
     dispatch
   }) => {
@@ -73,23 +100,14 @@ const SuspenseTable: React.FC = () => {
       }));
     };
     return (
-     <div className='justify-center flex cursor-pointer'>
       <img
         src='static/icons/save.svg'
-        className='mr-15'
+        className='mr-4'
         alt='Save'
         title='Save'
         onClick={saveNewData}
       />
-      <img
-        src='static/icons/close.svg'
-        className='close-cell-button'
-        alt='Cancel'
-        title='Cancel'
-        onClick={() => dispatch(hideNewRow())}
-      />
-     </div>
-   );
+    );
   };
 
   const tablePropsInit: ITableProps = {
@@ -116,14 +134,26 @@ const SuspenseTable: React.FC = () => {
       childComponents={{
         cellEditor: {
           content: (props) => {
-            if (props.column.key === 'addColumn'){
-              return <SaveButton {...props}/>;
+            if (props.column.key === 'actions'){
+              return (
+                <div className='justify-center flex cursor-pointer'>
+                  <SaveButton {...props}/>
+                  <RemoveButton {...props}/>
+                </div>
+              );
+            }
+          }
+        },
+        cellText: {
+          content: (props) => {
+            if (props.column.key === 'actions') {
+              return <DeleteRow {...props}/>;
             }
           }
         },
         headCell: {
           content: (props) => {
-            if (props.column.key === 'addColumn'){
+            if (props.column.key === 'actions'){
               return <AddButton {...props}/>;
             }
           }
