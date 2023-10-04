@@ -5,7 +5,7 @@ import "ka-table/style.css";
 import React, { useState } from 'react';
 
 import { ITableProps, kaReducer, Table } from 'ka-table';
-import { ICellEditorProps, IHeadCellProps } from 'ka-table/props';
+import { ICellEditorProps, ICellTextProps, IHeadCellProps } from 'ka-table/props';
 import { deleteRow, hideNewRow, saveNewRow, showNewRow } from 'ka-table/actionCreators';
 import { DataType, EditingMode, SortingMode } from 'ka-table/enums';
 import { DispatchFunc } from 'ka-table/types';
