@@ -1,6 +1,12 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+[Suspense](https://suspense.netlify.app) keeps track of your suspension settings.
 
-## Getting Started
+Settings are recorded in local storage.
+
+You can record any number of suspension profiles.
+
+## Development
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 First, run the development server:
 
