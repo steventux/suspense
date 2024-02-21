@@ -1,9 +1,9 @@
 "use client";
 import React,{useEffect, useState} from "react";
 import useSWR from "swr";
-import { fetcher } from "../lib";
-import Profile from "../components/Profile";
-import { ProfileModel } from "../types";
+import { fetcher } from "@/app/lib";
+import Profile from "@/app/components/Profile";
+import { ProfileModel } from "@/app/types";
 import Link from "next/link";
 
 export default function Profiles() {

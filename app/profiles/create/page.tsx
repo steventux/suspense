@@ -1,8 +1,8 @@
 "use client"
 import React, {useState } from 'react'
 import { useRouter } from 'next/navigation'
-import LabelAndTextField from '../../components/form/LabelAndTextField'
-import Submit from '../../components/form/Submit'
+import LabelAndTextField from '@/app/components/form/LabelAndTextField'
+import Submit from '@/app/components/form/Submit'
 
 export default function ProfileCreate() {
   const router = useRouter()
