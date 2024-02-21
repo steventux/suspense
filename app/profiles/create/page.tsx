@@ -58,20 +58,19 @@ export default function ProfileCreate() {
       <div className="m-auto w-full text-center mb-10">
         <h1 className="text-xl font-bold">Add a new suspension profile</h1>
       </div>
-
-      <LabelAndTextField fieldName={'name'} fieldSetter={setName} labelText={'Name'} />
-      <LabelAndTextField fieldName={'forkPsi'} fieldSetter={setForkPsi} labelText={'Fork PSI'} />
-      <LabelAndTextField fieldName={'forkSag'} fieldSetter={setForkSag} labelText={'Fork sag'} />
-      <LabelAndTextField fieldName={'forkHsc'} fieldSetter={setForkHsc} labelText={'Fork HSC'} />
-      <LabelAndTextField fieldName={'forkLsc'} fieldSetter={setForkLsc} labelText={'Fork LSC'} />
-      <LabelAndTextField fieldName={'forkHsr'} fieldSetter={setForkHsr} labelText={'Fork HSR'} />
-      <LabelAndTextField fieldName={'forkLsr'} fieldSetter={setForkLsr} labelText={'Fork LSR'} />
-      <LabelAndTextField fieldName={'shockPsi'} fieldSetter={setShockPsi} labelText={'Shock PSI'} />
-      <LabelAndTextField fieldName={'shockSag'} fieldSetter={setShockSag} labelText={'Shock sag'} />
-      <LabelAndTextField fieldName={'shockHsc'} fieldSetter={setShockHsc} labelText={'Shock HSC'} />
-      <LabelAndTextField fieldName={'shockLsc'} fieldSetter={setShockLsc} labelText={'Shock LSC'} />
-      <LabelAndTextField fieldName={'shockHsr'} fieldSetter={setShockHsr} labelText={'Shock HSR'} />
-      <LabelAndTextField fieldName={'shockLsr'} fieldSetter={setShockLsr} labelText={'Shock LSR'} />
+      <LabelAndTextField fieldName={'name'} fieldValue={name} fieldSetter={setName} labelText={'Name'} />
+      <LabelAndTextField fieldName={'forkPsi'} fieldValue={forkPsi} fieldSetter={setForkPsi} labelText={'Fork PSI'} />
+      <LabelAndTextField fieldName={'forkSag'} fieldValue={forkSag} fieldSetter={setForkSag} labelText={'Fork sag'} />
+      <LabelAndTextField fieldName={'forkHsc'} fieldValue={forkHsc} fieldSetter={setForkHsc} labelText={'Fork HSC'} />
+      <LabelAndTextField fieldName={'forkLsc'} fieldValue={forkLsc} fieldSetter={setForkLsc} labelText={'Fork LSC'} />
+      <LabelAndTextField fieldName={'forkHsr'} fieldValue={forkHsr} fieldSetter={setForkHsr} labelText={'Fork HSR'} />
+      <LabelAndTextField fieldName={'forkLsr'} fieldValue={forkLsr} fieldSetter={setForkLsr} labelText={'Fork LSR'} />
+      <LabelAndTextField fieldName={'shockPsi'} fieldValue={shockPsi} fieldSetter={setShockPsi} labelText={'Shock PSI'} />
+      <LabelAndTextField fieldName={'shockSag'} fieldValue={shockSag} fieldSetter={setShockSag} labelText={'Shock sag'} />
+      <LabelAndTextField fieldName={'shockHsc'} fieldValue={shockHsc} fieldSetter={setShockHsc} labelText={'Shock HSC'} />
+      <LabelAndTextField fieldName={'shockLsc'} fieldValue={shockLsc} fieldSetter={setShockLsc} labelText={'Shock LSC'} />
+      <LabelAndTextField fieldName={'shockHsr'} fieldValue={shockHsr} fieldSetter={setShockHsr} labelText={'Shock HSR'} />
+      <LabelAndTextField fieldName={'shockLsr'} fieldValue={shockLsr} fieldSetter={setShockLsr} labelText={'Shock LSR'} />
 
       <Submit />
     </form>
