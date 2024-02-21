@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface LabelProps {
+interface LabelProps extends React.HTMLAttributes<any> {
   fieldName: string;
   labelText: string;
 }

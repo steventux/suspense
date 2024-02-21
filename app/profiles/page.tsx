@@ -18,20 +18,7 @@ export default function Profiles() {
   if (error) return <div>Failed to load</div>;
   if (isLoading) return <div>Loading...</div>;
   if (!data) return null;
-  let delete_Profile : ProfileModel['deleteProfile']= async (id:number) => {
-    const res = await fetch(`/api/profiles/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    });
-    const content = await res.json();
-    if(content.success>0)
-    {
 
-      setProfiles(profiles?.filter((profile:ProfileModel)=>{  return profile.id !== id  }));
-    }
-  }
   return (
     <div className="w-full max-w-7xl m-auto">
       <table className="w-full border-collapse border border-slate-400">
@@ -47,7 +34,7 @@ export default function Profiles() {
         </thead>
         <tbody>
            {
-              profiles && profiles.map((item : ProfileModel)=><Profile key={item.id} {...item} deleteProfile = {delete_Profile} />)
+              profiles && profiles.map((item : ProfileModel)=><Profile key={item.id} {...item} />)
            }
            <tr>
               <td colSpan={6}>
@@ -59,4 +46,3 @@ export default function Profiles() {
     </div>
   );
 }
-

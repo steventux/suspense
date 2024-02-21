@@ -4,6 +4,9 @@ import { useRouter } from 'next/navigation'
 import { fetcher } from '@/app/lib'
 import useSWR from 'swr'
 
+import LabelAndTextField from '@/app/components/form/LabelAndTextField';
+import Submit from '@/app/components/form/Submit';
+
 export default function ProfileEdit({params} :{params:{id:number}}) {
   const router = useRouter()
   const [name, setName] = useState<string>('');
@@ -20,7 +23,7 @@ export default function ProfileEdit({params} :{params:{id:number}}) {
   const [shockHsr, setShockHsr] = useState<string>('');
   const [shockLsr, setShockLsr] = useState<string>('');
 
-  const {data : profile,isLoading, error} = useSWR(`/api/profiles/${params.id}`,fetcher)
+  const {data : profile, isLoading, error} = useSWR(`/api/profiles/${params.id}`,fetcher)
   useEffect(()=>{
      if(profile){
          setName(profile.name)
@@ -66,155 +69,32 @@ export default function ProfileEdit({params} :{params:{id:number}}) {
       const content = await res.json();
       if(content.success>0)
       {
-        router.push('/profile');
+        router.push('/profiles');
       }
 
     }
   };
   if(isLoading) return <div><span>Loading...</span></div>
   if (!profile) return null;
-  const labelClassNames = 'block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4';
-  const inputClassNames = 'bg-gray-200 appearance-none border-2 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500';
 
   return (
     <form className="w-full bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={updateProfile}>
       <h1 className="text-xl font-bold">Edit profile</h1>
-      <div className="md:flex md:items-center mb-6">
-        <div className="md:w-1/3">
-          <label className={labelClassNames} htmlFor="name">
-            Name
-          </label>
-        </div>
-        <div className="md:w-2/3">
-          <input className={inputClassNames} id="name" type="text" value={name} onChange={(e:any)=>setName(e.target.value)}/>
-        </div>
-      </div>
-      <div className="md:flex md:items-center mb-6">
-        <div className="md:w-1/3">
-          <label className={labelClassNames} htmlFor="forkPsi">
-            Fork PSI
-          </label>
-        </div>
-        <div className="md:w-2/3">
-          <input className={inputClassNames} id="forkPsi" type="text" value={forkPsi} onChange={(e:any)=>setForkPsi(e.target.value)}/>
-        </div>
-      </div>
-      <div className="md:flex md:items-center mb-6">
-        <div className="md:w-1/3">
-          <label className={labelClassNames} htmlFor="forkSag">
-            Fork sag
-          </label>
-        </div>
-        <div className="md:w-2/3">
-          <input className={inputClassNames} id="forkSag" type="text" value={forkSag} onChange={(e:any)=>setForkSag(e.target.value)}/>
-        </div>
-      </div>
-      <div className="md:flex md:items-center mb-6">
-        <div className="md:w-1/3">
-          <label className={labelClassNames} htmlFor="forkHsc">
-            Fork HSC
-          </label>
-        </div>
-        <div className="md:w-2/3">
-          <input className={inputClassNames} id="forkHsc" type="text" value={forkHsc} onChange={(e:any)=>seForkHsc(e.target.value)}/>
-        </div>
-      </div>
-      <div className="md:flex md:items-center mb-6">
-        <div className="md:w-1/3">
-          <label className={labelClassNames} htmlFor="forkLsc">
-            Fork LSC
-          </label>
-        </div>
-        <div className="md:w-2/3">
-          <input className={inputClassNames} id="forkLsc" type="text" value={forkLsc} onChange={(e:any)=>setForkLsc(e.target.value)}/>
-        </div>
-      </div>
-      <div className="md:flex md:items-center mb-6">
-        <div className="md:w-1/3">
-          <label className={labelClassNames} htmlFor="forkHsr">
-            Fork HSR
-          </label>
-        </div>
-        <div className="md:w-2/3">
-          <input className={inputClassNames} id="forkHsr" type="text" value={forkHsr} onChange={(e:any)=>setForkHsr(e.target.value)}/>
-        </div>
-      </div>
-      <div className="md:flex md:items-center mb-6">
-        <div className="md:w-1/3">
-          <label className={labelClassNames} htmlFor="forkLsr">
-            Fork LSR
-          </label>
-        </div>
-        <div className="md:w-2/3">
-          <input className={inputClassNames} id="forkLsr" type="text" value={forkLsr} onChange={(e:any)=>setForkLsr(e.target.value)}/>
-        </div>
-      </div>
-      <div className="md:flex md:items-center mb-6">
-        <div className="md:w-1/3">
-          <label className={labelClassNames} htmlFor="shockPsi">
-            Shock PSI
-          </label>
-        </div>
-        <div className="md:w-2/3">
-          <input className={inputClassNames} id="shockPsi" type="text" value={shockPsi} onChange={(e:any)=>setShockPsi(e.target.value)}/>
-        </div>
-      </div>
-      <div className="md:flex md:items-center mb-6">
-        <div className="md:w-1/3">
-          <label className={labelClassNames} htmlFor="shockSag">
-            Shock sag
-          </label>
-        </div>
-        <div className="md:w-2/3">
-          <input className={inputClassNames} id="shockSag" type="text" value={shockSag} onChange={(e:any)=>setShockSag(e.target.value)}/>
-        </div>
-      </div>
+      <LabelAndTextField fieldName={'name'} fieldSetter={setName} labelText={'Name'} />
+      <LabelAndTextField fieldName={'forkPsi'} fieldSetter={setForkPsi} labelText={'Fork PSI'} />
+      <LabelAndTextField fieldName={'forkSag'} fieldSetter={setForkSag} labelText={'Fork sag'} />
+      <LabelAndTextField fieldName={'forkHsc'} fieldSetter={setForkHsc} labelText={'Fork HSC'} />
+      <LabelAndTextField fieldName={'forkLsc'} fieldSetter={setForkLsc} labelText={'Fork LSC'} />
+      <LabelAndTextField fieldName={'forkHsr'} fieldSetter={setForkHsr} labelText={'Fork HSR'} />
+      <LabelAndTextField fieldName={'forkLsr'} fieldSetter={setForkLsr} labelText={'Fork LSR'} />
+      <LabelAndTextField fieldName={'shockPsi'} fieldSetter={setShockPsi} labelText={'Shock PSI'} />
+      <LabelAndTextField fieldName={'shockSag'} fieldSetter={setShockSag} labelText={'Shock sag'} />
+      <LabelAndTextField fieldName={'shockHsc'} fieldSetter={setShockHsc} labelText={'Shock HSC'} />
+      <LabelAndTextField fieldName={'shockLsc'} fieldSetter={setShockLsc} labelText={'Shock LSC'} />
+      <LabelAndTextField fieldName={'shockHsr'} fieldSetter={setShockHsr} labelText={'Shock HSR'} />
+      <LabelAndTextField fieldName={'shockLsr'} fieldSetter={setShockLsr} labelText={'Shock LSR'} />
 
-      <div className="md:flex md:items-center mb-6">
-        <div className="md:w-1/3">
-          <label className={labelClassNames} htmlFor="shockHsc">
-            Shock HSC
-          </label>
-        </div>
-        <div className="md:w-2/3">
-          <input className={inputClassNames} id="shockHsc" type="text" value={shockHsc} onChange={(e:any)=>setShockHsc(e.target.value)}/>
-        </div>
-      </div>
-      <div className="md:flex md:items-center mb-6">
-        <div className="md:w-1/3">
-          <label className={labelClassNames} htmlFor="shockLsc">
-            Shock LSC
-          </label>
-        </div>
-        <div className="md:w-2/3">
-          <input className={inputClassNames} id="shockLsc" type="text" value={shockLsc} onChange={(e:any)=>setShockLsc(e.target.value)}/>
-        </div>
-      </div>
-      <div className="md:flex md:items-center mb-6">
-        <div className="md:w-1/3">
-          <label className={labelClassNames} htmlFor="shockHsr">
-            Shock HSR
-          </label>
-        </div>
-        <div className="md:w-2/3">
-          <input className={inputClassNames} id="shockHsr" type="text" value={shockHsr} onChange={(e:any)=>setShockHsr(e.target.value)}/>
-        </div>
-      </div>
-      <div className="md:flex md:items-center mb-6">
-        <div className="md:w-1/3">
-          <label className={labelClassNames} htmlFor="shockLsr">
-            Shock LSR
-          </label>
-        </div>
-        <div className="md:w-2/3">
-          <input className={inputClassNames} id="shockLsr" type="text" value={shockLsr} onChange={(e:any)=>setShockLsr(e.target.value)}/>
-        </div>
-      </div>
-
-      <div className='w-full py-2'>
-        <button className="w-20 p-2 text-white border-gray-200 border-[1px] rounded-sm bg-green-400">Submit</button>
-      </div>
+      <Submit />
     </form>
   )
 }
-

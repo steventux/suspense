@@ -1,9 +1,9 @@
 import React from 'react'
 import { SyntheticEvent } from 'react'
 
-interface TextFieldProps {
+interface TextFieldProps extends React.HTMLAttributes<any> {
   fieldName: string;
-  fieldSetter: Function;
+  fieldSetter: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function TextField({fieldName, fieldSetter}: TextFieldProps) {

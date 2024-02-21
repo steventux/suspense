@@ -1,8 +1,5 @@
-import { Link } from 'components';
-
-export default Home;
-
-function Home() {
+import Link from "next/link";
+export default function Home() {
   return (
     <div>
       <h1>Next.js 10 - CRUD Example with React Hook Form</h1>
