@@ -15,7 +15,7 @@ export default function handler(
   const updateProfile = () => {
     try {
       profilesRepo.update(req.query.id, req.body);
-      return res.status(200).json({});
+      return res.status(200).json({success:1});
     } catch (error) {
       return res.status(400).json({ message: error });
     }
@@ -23,7 +23,7 @@ export default function handler(
 
   const deleteProfile = () => {
     profilesRepo.delete(req.query.id);
-    return res.status(200).json({});
+    return res.status(200).json({success:1});
   }
 
   switch (req.method) {

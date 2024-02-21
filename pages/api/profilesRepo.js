@@ -11,7 +11,10 @@ const getById = (id) => {
 }
 
 const create = ({ name, forkPsi, forkSag, forkHsc, forkLsc, forkHsr, forkLsr, shockPsi, shockSag, shockHsc, shockLsc, shockHsr, shockLsr }) => {
-  const profile = { name, forkPsi, forkSag, forkHsc, forkLsc, forkHsr, forkLsr, shockPsi, shockSag, shockHsc, shockLsc, shockHsr, shockLsr };
+  const profile = {
+    id, name, forkPsi, forkSag, forkHsc, forkLsc, forkHsr, forkLsr,
+    shockPsi, shockSag, shockHsc, shockLsc, shockHsr, shockLsr
+  };
 
   // validate
   if (profiles.find(x => x.name === profile.name))
@@ -27,6 +30,8 @@ const create = ({ name, forkPsi, forkSag, forkHsc, forkLsc, forkHsr, forkLsr, sh
   // add and save profile
   profiles.push(profile);
   saveData();
+
+  return profile;
 }
 
 const update = (id, { name, forkPsi, forkSag, forkHsc, forkLsc, forkHsr, forkLsr, shockPsi, shockSag, shockHsc, shockLsc, shockHsr, shockLsr }) => {

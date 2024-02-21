@@ -8,13 +8,13 @@ export default function handler(
 ) {
   const getProfiles = () => {
     const profiles = profilesRepo.getAll();
-    return res.status(200).json(profiles);
+    return res.status(200).json({profiles: profiles, success: 1});
   }
 
   const createProfile = () => {
     try {
-      profilesRepo.create(req.body);
-      return res.status(200).json({});
+      const profile = profilesRepo.create(req.body);
+      return res.status(200).json({success:1, id: profile.id});
     } catch (error: any) {
       return res.status(400).json({ message: error });
     }
