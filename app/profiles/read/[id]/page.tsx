@@ -3,9 +3,10 @@ import { fetcher } from '@/app/lib'
 import useSWR from 'swr'
 
 export default function Detail({params}: {params:{id :number}}) {
-  const {data: profile, isLoading, error}  = useSWR(`/api/profiles/${params.id}`,fetcher)
+  const {data: data, isLoading, error}  = useSWR(`/api/profiles/${params.id}`,fetcher)
   if(isLoading) return <div><span>Loading...</span></div>
-  if (!profile) return null;
+  if (!data || !data.profile) return null;
+  const profile = data.profile;
   return (
     <div className='w-full'>
       <h2 className='text-center font-bold text-3xl py-3'>{profile.name}</h2>

@@ -47,7 +47,7 @@ export default function ProfileCreate() {
       });
       const content = await add.json();
       if(content.success > 0) {
-        router.push(`/profiles/read/${content.id}`);
+        router.push(`/profiles/read/${content.profile.id}`);
       }
     }
   };

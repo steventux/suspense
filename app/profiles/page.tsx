@@ -7,18 +7,19 @@ import { ProfileModel } from "../types";
 import Link from "next/link";
 
 export default function Profiles() {
-  const [profiles,setProfiles] = useState<ProfileModel[]>([]);
+  const [profiles, setProfiles] = useState<ProfileModel[]>([]);
   const { data, error, isLoading } = useSWR<any>(`/api/profiles`, fetcher);
-  useEffect(()=>{
-    if(data)
-    {
-      setProfiles(data);
+
+  useEffect(() => {
+    if (data) {
+      setProfiles(data.profiles);
     }
-  },[data,isLoading]);
+  }, [data,isLoading]);
+  
   if (error) return <div>Failed to load</div>;
   if (isLoading) return <div>Loading...</div>;
   if (!data) return null;
-
+  
   return (
     <div className="w-full max-w-7xl m-auto">
       <table className="w-full border-collapse border border-slate-400">
