@@ -8,13 +8,13 @@ export default function handler(
 ) {
 
   const getProfileById = () => {
-    const profile = profilesRepo.getById(req.query.id);
+    const profile = profilesRepo.getById(Number(req.query.id));
     return res.status(200).json(profile);
   }
 
   const updateProfile = () => {
     try {
-      profilesRepo.update(req.query.id, req.body);
+      profilesRepo.update(Number(req.query.id), req.body);
       return res.status(200).json({success:1});
     } catch (error) {
       return res.status(400).json({ message: error });
@@ -22,7 +22,7 @@ export default function handler(
   }
 
   const deleteProfile = () => {
-    profilesRepo.delete(req.query.id);
+    profilesRepo.delete(Number(req.query.id));
     return res.status(200).json({success:1});
   }
 

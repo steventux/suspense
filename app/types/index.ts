@@ -13,4 +13,6 @@ export interface ProfileModel {
     shockHsr: number,
     shockLsr: number,
     shockSag: number,
+    dateCreated: string,
+    dateUpdated: string
 }
